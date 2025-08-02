@@ -298,3 +298,9 @@ class EmotionMusicRecommender:
                 "success": False,
                 "error": str(e)
             }
+
+
+recommender = EmotionMusicRecommender()
+
+def predict_emotion_and_playlist(text):
+    return recommender.get_emotion_playlist(text)
