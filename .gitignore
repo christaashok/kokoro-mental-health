@@ -1,0 +1,15 @@
+# Ignore Python environments
+__pycache__/
+*.pyc
+
+# Ignore Flask environment config
+server/.env
+
+# Ignore VS Code settings (optional)
+.vscode/
+
+# Ignore system files
+.DS_Store
+
+# Ignore logs
+*.log
