@@ -14,7 +14,7 @@ document.getElementById("send-btn").addEventListener("click", async () => {
 
     try {
         // Get chatbot reply
-        const chatRes = await fetch("http://localhost:5001/chat", {
+        const chatRes = await fetch("http://localhost:5000/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: message })
