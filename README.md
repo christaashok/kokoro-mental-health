@@ -46,19 +46,22 @@ This app is designed to bring emotional support to people in moments of need —
 
 ---
 
-## 📁 Folder Structure
+### 📁 Folder Structure
+
+```
 emotion-support-app/
 ├── client/
-│   ├── public/             # HTML files
-│   ├── assets/             # Fonts, icons, styling
-│   └── scripts/            # chatbot.js, mood-buttons.js
+│   ├── public/           # HTML files
+│   ├── assets/           # Fonts, icons, styling
+│   └── scripts/          # chatbot.js, mood-buttons.js
 ├── server/
-│   ├── app.py              # Flask backend
-│   ├── ml.py               # Emotion + playlist logic
-│   └── .env                # Hugging Face + Spotify tokens
-├── docs/                   # Hackathon notes + planning
+│   ├── app.py            # Flask backend
+│   ├── ml.py             # Emotion + playlist logic
+│   └── .env              # Hugging Face + Spotify tokens
+├── docs/                 # Hackathon notes + planning
 ├── README.md
 └── .gitignore
+```
 
 ---
 
@@ -79,8 +82,9 @@ Please report bugs via GitHub Issues:
 ---
 
 
-👥 Contributors
-	•	Christa – 💌 christa.ashok@gmail.com 🐙 GitHub: @christaashok
-	•	Taemin – 💌 taemin.chess@gmail.com 🐙 GitHub: @taemincode
-  •	Nandhu – 💌 s.srinandhini2008@gmail.com 🐙 GitHub: @Nandhu-007
-  •	Aahana – 💌 aahanajain03@gmail.com 🐙 GitHub: @aahanajain03
+### 👥 Contributors
+
+- **Christa** – 💌 christa.ashok@gmail.com  🐙 GitHub: [@christaashok](https://github.com/christaashok)  
+- **Taemin** – 💌 taemin.chess@gmail.com  🐙 GitHub: [@taemincode](https://github.com/taemincode)  
+- **Nandhu** – 💌 s.srinandhini2008@gmail.com  🐙 GitHub: [@Nandhu-007](https://github.com/Nandhu-007)  
+- **Aahana** – 💌 aahanajain03@gmail.com  🐙 GitHub: [@aahanajain03](https://github.com/aahanajain03)
