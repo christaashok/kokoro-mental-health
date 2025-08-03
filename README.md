@@ -24,7 +24,7 @@ This app is designed to bring emotional support to people in moments of need —
 - Users select a mood emoji (😊 😢 😡 😐)
 - App instantly starts a playlist that matches their selection
 
-### 📓 Journal *(Coming Soon)*
+### 📓 Journal
 - Mood logs with optional user notes
 - Emotion-tagged playlist history
 
