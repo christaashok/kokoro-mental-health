@@ -83,7 +83,7 @@ body::before {
 }
 
 .chat-container::before {
-  content: "💬 KOKORO CHAT v1.0";
+  content: "💬 KOKORO Journal";
   position: absolute;
   top: -3px;
   left: -3px;
@@ -678,14 +678,16 @@ nav a:active {
 
 /* Journal entries */
 .journal-entry {
-  background: #000;
-  color: var(--neon-yellow);
+  background: var(--retro-darker);
+  color: var(--retro-light);
   padding: 15px;
   border-radius: 12px;
   margin-bottom: 12px;
   font-size: 16px;
   line-height: 1.5;
-  border: 2px solid var(--neon-green);
-  box-shadow: 0 0 15px var(--neon-green), 0 0 25px var(--neon-blue);
+  border: 2px solid var(--retro-cyan);
+  box-shadow: 3px 3px 0 var(--retro-shadow), 0 0 15px rgba(0, 212, 255, 0.3);
   word-wrap: break-word;
+  font-family: 'VT323', monospace;
+  animation: messageSlideIn 0.3s ease-out;
 }

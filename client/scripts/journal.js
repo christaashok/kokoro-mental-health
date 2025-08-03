@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const journalInput = document.getElementById('journal-input');
   const addEntryBtn = document.getElementById('add-entry-btn');
 
-  addEntryBtn.addEventListener('click', () => {
+  function addJournalEntry() {
     const text = journalInput.value.trim();
 
     if (text === '') {
@@ -21,5 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
     journalLog.appendChild(entry);
     journalInput.value = '';
     journalLog.scrollTop = journalLog.scrollHeight;
+  }
+
+  // Add entry on button click
+  addEntryBtn.addEventListener('click', addJournalEntry);
+
+  // Add entry on Ctrl+Enter or Cmd+Enter
+  journalInput.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      addJournalEntry();
+    }
   });
 });

@@ -631,6 +631,27 @@ nav a:active {
   filter: drop-shadow(2px 2px 0 var(--retro-shadow));
 }
 
+.retro-emoji-button .emotion-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(2px 2px 0 var(--retro-shadow));
+  transition: all 0.3s ease;
+  border: 2px solid var(--retro-cyan);
+}
+
+.retro-emoji-button:hover .emotion-image {
+  transform: scale(1.1);
+  border-color: var(--retro-pink);
+  filter: drop-shadow(3px 3px 0 var(--retro-shadow)) brightness(1.2);
+}
+
+.retro-emoji-button.selected .emotion-image {
+  border-color: var(--retro-pink);
+  filter: drop-shadow(3px 3px 0 var(--retro-shadow)) brightness(1.3);
+}
+
 .retro-emoji-button .emotion-label {
   font-family: 'Press Start 2P', cursive;
   font-size: 12px;

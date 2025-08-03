@@ -1,45 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kokoro Emoji Chat</title>
-  <link rel="stylesheet" href="client/styles/style1.css" />
+  <title>Kokoro - Mood Selection</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
 </head>
 <body>
   <nav> 
     <ul>
-      <li><a href="index.html"> Wanna talk? </a></li>
-      <li><a href="emoji-chat.html"> Emoji Chat </a></li>
-      <li><a href="emergency.html"> Track your emotions </a></li>
+      <li><a href="chatbot.html">Wanna talk?</a></li>
+      <li><a href="mood-buttons.html">Don't wanna talk?</a></li>
+      <li><a href="journal.html">Track your emotions</a></li>
     </ul>
   </nav>
-
-  <div class="logo-header">
-    <div class="logo">心</div>
-    <h1 class="Heading">Kokoro</h1>
+  <div class="text-container">
+    <div class="logo-header">
+      <div class="logo">心</div>
+      <h1 class="Heading">Kokoro</h1>
+    </div>
+    <h2 class="Tagline">Let the Music Understand You</h2>
   </div>
-  <h2 class="Tagline">Express Yourself with Emojis</h2>
-
   <div class="main-container">
-    <div class="chat-container">
-      <div id="chat-log" class="chat-log"></div>
-
-      <div class="chat-input-area" style="flex-direction: column; gap: 15px;">
+    <div class="mood-selection-container">
+      <div id="mood-log" class="mood-log">
+        <div class="mood-welcome-message">
+          <div style="font-family: 'Press Start 2P', cursive; font-size: 14px; color: var(--retro-cyan); text-align: center; margin-bottom: 20px;">🎮 MOOD SELECTOR v1.0</div>
+          <div style="font-family: 'VT323', monospace; font-size: 20px; color: var(--retro-light); text-align: center; line-height: 1.4;">How are you feeling today?<br/>Select your mood and let the music flow!</div>
+        </div>
+      </div>
+      <div class="mood-input-area">
         <div class="emoji-options">
-          <button class="emoji-button">😊</button>
-          <button class="emoji-button">😑</button>
-          <button class="emoji-button">😡</button>
-          <button class="emoji-button">😭</button>
-
+          <button class="emoji-button retro-emoji-button" data-feeling="happy" data-emoji="😊">
+            <img src="../assets/smile.jpg" alt="Happy" class="emotion-image">
+            <span class="emotion-label">Happy</span>
+          </button>
+          <button class="emoji-button retro-emoji-button" data-feeling="sad" data-emoji="😢">
+            <img src="../assets/sad.jpg" alt="Sad" class="emotion-image">
+            <span class="emotion-label">Sad</span>
+          </button>
+          <button class="emoji-button retro-emoji-button" data-feeling="angry" data-emoji="😠">
+            <img src="../assets/soso.jpg" alt="Angry" class="emotion-image">
+            <span class="emotion-label">Angry</span>
+          </button>
+          <button class="emoji-button retro-emoji-button" data-feeling="numb" data-emoji="😐">
+            <img src="../assets/shy.jpg" alt="Numb" class="emotion-image">
+            <span class="emotion-label">Numb</span>
+          </button>
+        </div>
+        <div class="mood-submit-area">
+          <input type="text" id="emotion-input" placeholder="Select your mood above..." readonly />
+          <button id="submit-emotion">❤️</button>
         </div>
       </div>
     </div>
-
     <div id="spotify-player" class="spotify-player"></div>
   </div>
-
-  <script src="../scripts/emoji-chat.js"></script>
+  <script src="../scripts/mood-buttons.js"></script>
 </body>
 </html>
