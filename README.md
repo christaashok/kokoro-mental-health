@@ -1,8 +1,6 @@
 # Kokoro - 心
 
-<p align="center">
-  <img src="client/assets/Kokoro logo.webp" alt="Kokoro Logo" width="200"/>
-</p>
+<img src="client/assets/kokoro-logo.webp" alt="Kokoro Logo" width="200">
 
 **Kokoro** is a music-based mental health support web app designed to provide comfort and emotional relief through mood-aware music.  
 It supports users through a gentle chatbot, quick mood selection, and emergency resources — using AI emotion detection and Spotify integration.
