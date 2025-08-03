@@ -557,25 +557,11 @@ body:has([id="journal-log"]) .chat-container::before {
   text-transform: uppercase;
 }
 
-.mood-log {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: 15px;
-  margin-top: 25px;
-  padding: 10px;
-  background: var(--retro-darker);
-  border: 2px solid var(--retro-purple);
-}
-
-.mood-welcome-message {
-  text-align: center;
-  padding: 20px;
-}
-
 .mood-input-area {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding-top: 50px;
 }
 
 .emoji-options {

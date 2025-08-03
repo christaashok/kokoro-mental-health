@@ -34,8 +34,8 @@ function setupMoodButtons() {
             
             emotionInput.value = `${emoji} ${label}`;
             
-            // Add a retro selection message to mood log
-            addMoodMessage("System", `Mood selected: ${emoji} ${label.toUpperCase()}`);
+            // Add a retro selection message
+            console.log("System", `Mood selected: ${emoji} ${label.toUpperCase()}`);
         });
     });
 }
@@ -45,11 +45,11 @@ function setupSubmitButton() {
     
     submitButton.addEventListener('click', async () => {
         if (!selectedMood) {
-            addMoodMessage("Error", "Please select a mood first!");
+            console.log("Error", "Please select a mood first!");
             return;
         }
         
-        addMoodMessage("System", `Processing your ${selectedMood} mood...`);
+        console.log("System", `Processing your ${selectedMood} mood...`);
         
         try {
             // Call the predict API with the selected mood
@@ -67,13 +67,13 @@ function setupSubmitButton() {
             
             // Display success message
             if (predictData.success) {
-                addMoodMessage("Kokoro", `Perfect! I've curated music for your ${selectedMood} mood.`);
+                console.log("Kokoro", `Perfect! I've curated music for your ${selectedMood} mood.`);
                 
                 // Display music recommendations
                 if (predictData.music_recommendations && predictData.music_recommendations.tracks) {
                     displayMusicRecommendations(predictData.music_recommendations.tracks);
                 } else {
-                    addMoodMessage("Kokoro", "I couldn't find specific tracks, but I'm still learning your preferences!");
+                    console.log("Kokoro", "I couldn't find specific tracks, but I'm still learning your preferences!");
                 }
             } else {
                 throw new Error("Failed to get music recommendations");
@@ -81,87 +81,8 @@ function setupSubmitButton() {
             
         } catch (err) {
             console.error("Error:", err);
-            addMoodMessage("Error", `Something went wrong: ${err.message}. Make sure the server is running on port 5001.`);
+            console.log("Error", `Something went wrong: ${err.message}. Make sure the server is running on port 5001.`);
         }
-    });
-}
-
-function addMoodMessage(sender, message) {
-    const moodLog = document.getElementById("mood-log");
-    const msg = document.createElement("div");
-    
-    // Add retro styling and icons based on sender
-    let icon = "";
-    let senderClass = "";
-    
-    if (sender === "System") {
-        icon = "⚙️";
-        senderClass = "system-message";
-    } else if (sender === "Kokoro") {
-        icon = "🤖";
-        senderClass = "bot-message";
-    } else if (sender === "Error") {
-        icon = "⚠️";
-        senderClass = "error-message";
-    }
-    
-    msg.className = senderClass;
-    msg.innerHTML = `<strong>${icon} ${sender.toUpperCase()}:</strong> ${message}`;
-    msg.style.margin = "10px 0";
-    msg.style.padding = "12px 16px";
-    msg.style.border = "2px solid";
-    msg.style.fontFamily = "'VT323', monospace";
-    msg.style.fontSize = "16px";
-    msg.style.lineHeight = "1.4";
-    msg.style.animation = "messageSlideIn 0.3s ease-out";
-    
-    // Apply specific styling based on sender
-    if (sender === "System") {
-        msg.style.background = "var(--retro-lime)";
-        msg.style.color = "var(--retro-dark)";
-        msg.style.borderColor = "var(--retro-lime)";
-        msg.style.boxShadow = "3px 3px 0 var(--retro-shadow)";
-        msg.style.textAlign = "center";
-    } else if (sender === "Kokoro") {
-        msg.style.background = "var(--retro-pink)";
-        msg.style.color = "var(--retro-dark)";
-        msg.style.borderColor = "var(--retro-pink)";
-        msg.style.boxShadow = "3px 3px 0 var(--retro-shadow)";
-        msg.style.textAlign = "center";
-    } else if (sender === "Error") {
-        msg.style.background = "var(--retro-orange)";
-        msg.style.color = "var(--retro-dark)";
-        msg.style.borderColor = "var(--retro-orange)";
-        msg.style.boxShadow = "3px 3px 0 var(--retro-shadow)";
-        msg.style.textAlign = "center";
-    }
-    
-    // Replace welcome message if it's the first message
-    const welcomeMessage = moodLog.querySelector('.mood-welcome-message');
-    if (welcomeMessage) {
-        moodLog.innerHTML = '';
-        moodLog.style.display = 'block';
-        moodLog.style.alignItems = 'flex-start';
-        moodLog.style.justifyContent = 'flex-start';
-        moodLog.style.padding = '10px';
-    }
-    
-    // Add with animation
-    msg.style.opacity = "0";
-    msg.style.transform = "translateY(-10px)";
-    moodLog.appendChild(msg);
-    
-    // Trigger animation
-    setTimeout(() => {
-        msg.style.transition = "all 0.3s ease";
-        msg.style.opacity = "1";
-        msg.style.transform = "translateY(0)";
-    }, 50);
-    
-    // Auto-scroll to bottom
-    moodLog.scrollTo({
-        top: moodLog.scrollHeight,
-        behavior: 'smooth'
     });
 }
 
@@ -215,7 +136,7 @@ function displayMusicRecommendations(tracks) {
                     <div style="flex: 1; min-width: 0;">
                         <div style="font-family: 'VT323', monospace; font-size: 16px; font-weight: bold; color: ${color.bg}; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase;">${track.name}</div>
                         <div style="font-family: 'VT323', monospace; font-size: 14px; color: var(--retro-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">BY ${track.artist.toUpperCase()}</div>
-                        <div style="font-family: 'Press Start 2P', cursive; font-size: 8px; color: var(--retro-cyan); margin-top: 4px;">MOOD MATCH: ${track.popularity}%</div>
+                        <div style="font-family: 'Press Start 2P', cursive; font-size: 8px; color: var(--retro-cyan); margin-top: 4px;">POPULARITY: ${track.popularity}%</div>
                     </div>
                 </div>
                 <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: space-between; align-items: center;">

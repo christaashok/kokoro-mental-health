@@ -80,7 +80,7 @@ function addMessageToChat(sender, message) {
         icon = "👤";
         senderClass = "user-message";
     } else if (sender === "Kokoro") {
-        icon = "🤖";
+        icon = "心";
         senderClass = "bot-message";
     } else if (sender === "Error") {
         icon = "⚠️";
@@ -194,13 +194,6 @@ function displayMusicRecommendations(tracks) {
                            onmouseover="this.style.background='var(--retro-dark)'; this.style.color='${color.bg}'"
                            onmouseout="this.style.background='${color.bg}'; this.style.color='${color.text}'">🎧 OPEN</a>
                     ` : ''}
-                    ${track.preview_url ? `
-                        <audio controls style="flex: 1; max-width: 120px; height: 25px; filter: sepia(100%) hue-rotate(270deg) saturate(2);">
-                            <source src="${track.preview_url}" type="audio/mpeg">
-                        </audio>
-                    ` : `
-                        <span style="font-family: 'VT323', monospace; font-size: 12px; color: var(--retro-light); opacity: 0.6;">NO PREVIEW</span>
-                    `}
                 </div>
             </div>
         `;

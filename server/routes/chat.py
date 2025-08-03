@@ -24,7 +24,7 @@ def register_routes(app):
                 json={
                     "model": "deepseek/deepseek-chat-v3-0324:free",
                     "messages": [
-                        {"role": "system", "content": "You are a friendly mental health chatbot."},
+                        {"role": "system", "content": "You are a friendly mental health chatbot called Kokoro."},
                         {"role": "user", "content": prompt}
                     ]
                 }
