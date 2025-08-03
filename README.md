@@ -1,12 +1,14 @@
 # Kokoro - 心
 
-<img src="client/assets/kokoro-logo.webp" alt="Kokoro Logo" width="200">
+<p align="center">
+  <img src="client/assets/kokoro-logo.webp" alt="Kokoro Logo" width="200">
+</p>
 
 **Kokoro** is a music-based mental health support web app designed to provide comfort and emotional relief through mood-aware music.  
 It supports users through a gentle chatbot, quick mood selection, and emergency resources — using AI emotion detection and Spotify integration.
 
-> *Kokoro* (心) is a Japanese word meaning **heart, mind, and spirit**.  
-> This app is designed to bring emotional support to people in moments of need — privately, gently, and with the help of music.
+*Kokoro* (心) is a Japanese word meaning **heart, mind, and spirit**.  
+This app is designed to bring emotional support to people in moments of need — privately, gently, and with the help of music.
 
 ---
 
