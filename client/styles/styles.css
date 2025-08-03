@@ -1,5 +1,886 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
 
+/* =================================================================
+   CSS VARIABLES & GLOBAL STYLES
+   ================================================================= */
+:root {
+  --retro-purple: #8B5FBF;
+  --retro-pink: #EC4899;
+  --retro-cyan: #00D4FF;
+  --retro-lime: #00FF88;
+  --retro-orange: #FF6B35;
+  --retro-dark: #2A1B3D;
+  --retro-darker: #1A0E2E;
+  --retro-light: #F0F8FF;
+  --retro-white: #FFFFFF;
+  --retro-shadow: #0F0B1A;
+  --gradient-start: #FF1493;
+  --gradient-end: #4169E1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--retro-purple) 50%, var(--gradient-end) 100%);
+  min-height: 100vh;
+  color: var(--retro-light);
+  font-size: 18px;
+  animation: scanlines 0.1s linear infinite;
+}
+
+/* =================================================================
+   RETRO CRT EFFECTS & ANIMATIONS
+   ================================================================= */
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 2px; }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 20, 147, 0.03) 2px,
+    rgba(255, 20, 147, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@keyframes messageSlideIn {
+  from { 
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoGlow {
+  from { 
+    box-shadow: 3px 3px 0 var(--retro-shadow), 0 0 15px var(--retro-pink);
+  }
+  to { 
+    box-shadow: 3px 3px 0 var(--retro-shadow), 0 0 25px var(--retro-pink), 0 0 35px var(--retro-purple);
+  }
+}
+
+@keyframes glow {
+  from { 
+    text-shadow: 3px 3px 0 var(--retro-shadow), 0 0 10px var(--retro-pink), 0 0 20px var(--gradient-start); 
+  }
+  to { 
+    text-shadow: 3px 3px 0 var(--retro-shadow), 0 0 20px var(--retro-pink), 0 0 30px var(--gradient-start), 0 0 40px var(--gradient-end); 
+  }
+}
+
+@keyframes taglineGlow {
+  from { 
+    box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 25px rgba(0, 212, 255, 0.3);
+  }
+  to { 
+    box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 35px rgba(236, 72, 153, 0.5), 0 0 45px rgba(0, 212, 255, 0.3);
+  }
+}
+
+@keyframes borderShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes musicNotes {
+  from { 
+    transform: translateY(-50%) rotate(-5deg);
+    opacity: 0.7;
+  }
+  to { 
+    transform: translateY(-50%) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* =================================================================
+   NAVIGATION BAR
+   ================================================================= */
+nav {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(42, 27, 61, 0.95) 0%, rgba(139, 95, 191, 0.9) 50%, rgba(236, 72, 153, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  border-bottom: 3px solid var(--retro-cyan);
+  padding: 20px 0;
+  box-shadow: 0 5px 0 var(--retro-shadow), 0 0 30px rgba(236, 72, 153, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 11px;
+  color: var(--retro-cyan);
+  padding: 14px 20px;
+  border: 2px solid var(--retro-cyan);
+  background: linear-gradient(145deg, rgba(42, 27, 61, 0.8), rgba(26, 14, 46, 0.9));
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+nav a:hover::before {
+  left: 100%;
+}
+
+nav a:hover {
+  background: linear-gradient(145deg, var(--retro-cyan), var(--retro-pink));
+  color: var(--retro-dark);
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0 var(--retro-shadow), 0 0 15px var(--retro-cyan);
+  border-color: var(--retro-pink);
+}
+
+nav a:active {
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 0 var(--retro-shadow);
+}
+
+/* =================================================================
+   HEADER & LOGO SECTION
+   ================================================================= */
+.logo-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border: 3px solid var(--retro-pink);
+  background: linear-gradient(135deg, var(--retro-purple) 0%, var(--retro-pink) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 3px 3px 0 var(--retro-shadow);
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+.Heading {
+  font-size: 48px;
+  color: var(--retro-pink);
+  font-family: 'Press Start 2P', cursive;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  text-shadow: 3px 3px 0 var(--retro-shadow);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.Tagline {
+  background: linear-gradient(135deg, var(--retro-dark) 0%, var(--retro-purple) 50%, var(--retro-pink) 100%);
+  border: 3px solid var(--retro-cyan);
+  padding: 20px 30px;
+  margin: 25px auto;
+  font-family: 'VT323', monospace;
+  font-size: 28px;
+  color: var(--retro-light);
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 25px rgba(0, 212, 255, 0.3);
+  text-align: center;
+  max-width: 600px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  overflow: hidden;
+  animation: taglineGlow 4s ease-in-out infinite alternate;
+}
+
+.Tagline::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--retro-cyan), var(--retro-pink), var(--retro-purple), var(--retro-cyan));
+  z-index: -1;
+  background-size: 400% 400%;
+  animation: borderShift 3s ease infinite;
+}
+
+.Tagline::after {
+  content: '♪ ♫ ♪';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--retro-cyan);
+  animation: musicNotes 2s ease-in-out infinite alternate;
+}
+
+/* =================================================================
+   MAIN CONTAINER LAYOUT
+   ================================================================= */
+.main-container {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* =================================================================
+   CHAT CONTAINER (CHATBOT & JOURNAL)
+   ================================================================= */
+.chat-container {
+  flex: 1;
+  min-width: 400px;
+  border: 3px solid var(--retro-cyan);
+  background: rgba(42, 27, 61, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 30px rgba(0, 212, 255, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.chat-container::before {
+  content: "💬 KOKORO CHAT v1.0";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  background: linear-gradient(90deg, var(--retro-cyan), var(--retro-pink));
+  color: var(--retro-dark);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+/* Journal specific header */
+body:has([id="journal-log"]) .chat-container::before {
+  content: "💬 KOKORO Journal";
+}
+
+.chat-log {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  padding: 10px;
+  background: var(--retro-darker);
+  border: 2px solid var(--retro-purple);
+}
+
+.chat-log div {
+  margin: 15px 0;
+  padding: 12px 16px;
+  border: 2px solid;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+.user-message {
+  background: var(--retro-cyan) !important;
+  color: var(--retro-dark) !important;
+  border-color: var(--retro-cyan) !important;
+  margin-left: 20px !important;
+  box-shadow: 3px 3px 0 var(--retro-shadow) !important;
+  text-align: right;
+}
+
+.bot-message {
+  background: var(--retro-pink) !important;
+  color: var(--retro-dark) !important;
+  border-color: var(--retro-pink) !important;
+  margin-right: 20px !important;
+  box-shadow: 3px 3px 0 var(--retro-shadow) !important;
+}
+
+.error-message {
+  background: var(--retro-orange) !important;
+  color: var(--retro-dark) !important;
+  border-color: var(--retro-orange) !important;
+  text-align: center !important;
+  margin: 10px !important;
+  box-shadow: 3px 3px 0 var(--retro-shadow) !important;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+#user-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  border: 2px solid var(--retro-cyan);
+  background: var(--retro-darker);
+  color: var(--retro-light);
+  outline: none;
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+#user-input::placeholder {
+  color: var(--retro-cyan);
+  font-family: 'VT323', monospace;
+  opacity: 0.7;
+}
+
+#user-input:focus {
+  border-color: var(--retro-pink);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow), 0 0 10px var(--retro-pink);
+}
+
+#send-btn {
+  padding: 15px 20px;
+  border: 2px solid var(--retro-pink);
+  background: var(--retro-pink);
+  color: var(--retro-dark);
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-transform: uppercase;
+  min-width: 80px;
+}
+
+#send-btn:hover {
+  background: var(--retro-dark);
+  color: var(--retro-pink);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--retro-shadow);
+}
+
+#send-btn:active {
+  transform: translate(0, 0);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+/* =================================================================
+   JOURNAL SPECIFIC STYLES
+   ================================================================= */
+#journal-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  border: 2px solid var(--retro-cyan);
+  background: var(--retro-darker);
+  color: var(--retro-light);
+  outline: none;
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+  resize: none;
+  height: 80px;
+}
+
+#journal-input::placeholder {
+  color: var(--retro-cyan);
+  font-family: 'VT323', monospace;
+  opacity: 0.7;
+}
+
+#journal-input:focus {
+  border-color: var(--retro-pink);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow), 0 0 10px var(--retro-pink);
+}
+
+#add-entry-btn {
+  padding: 15px 20px;
+  border: 2px solid var(--retro-pink);
+  background: var(--retro-pink);
+  color: var(--retro-dark);
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-transform: uppercase;
+  min-width: 80px;
+}
+
+#add-entry-btn:hover {
+  background: var(--retro-dark);
+  color: var(--retro-pink);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--retro-shadow);
+}
+
+#add-entry-btn:active {
+  transform: translate(0, 0);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+.journal-entry {
+  background: var(--retro-darker);
+  color: var(--retro-light);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 2px solid var(--retro-cyan);
+  box-shadow: 3px 3px 0 var(--retro-shadow), 0 0 15px rgba(0, 212, 255, 0.3);
+  word-wrap: break-word;
+  font-family: 'VT323', monospace;
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+/* =================================================================
+   SPOTIFY PLAYER CONTAINER
+   ================================================================= */
+.spotify-player {
+  flex: 1;
+  min-width: 350px;
+  max-width: 500px;
+  height: 500px;
+  overflow-y: auto;
+  border: 3px solid var(--retro-pink);
+  background: rgba(42, 27, 61, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 30px rgba(236, 72, 153, 0.3);
+  position: relative;
+}
+
+.spotify-player::before {
+  content: "🎵 MUSIC DECK v2.0";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  background: linear-gradient(90deg, var(--retro-pink), var(--retro-purple));
+  color: var(--retro-light);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+/* =================================================================
+   MOOD SELECTION CONTAINER (REPLACES EMOTIONS-CONTAINER)
+   ================================================================= */
+.mood-selection-container {
+  flex: 1;
+  min-width: 400px;
+  border: 3px solid var(--retro-purple);
+  background: rgba(42, 27, 61, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 30px rgba(139, 95, 191, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mood-selection-container::before {
+  content: "🎮 MOOD SELECTOR v1.0";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  background: linear-gradient(90deg, var(--retro-purple), var(--retro-cyan));
+  color: var(--retro-dark);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+.mood-log {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  padding: 10px;
+  background: var(--retro-darker);
+  border: 2px solid var(--retro-purple);
+}
+
+.mood-welcome-message {
+  text-align: center;
+  padding: 20px;
+}
+
+.mood-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.emoji-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  background: var(--retro-darker);
+  border: 2px solid var(--retro-cyan);
+  padding: 15px;
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+.retro-emoji-button {
+  font-size: 2rem;
+  background: var(--retro-pink);
+  color: var(--retro-dark);
+  border: 2px solid var(--retro-purple);
+  border-radius: 8px;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 var(--retro-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-emoji-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+  transition: left 0.3s ease;
+}
+
+.retro-emoji-button:hover::before {
+  left: 100%;
+}
+
+.retro-emoji-button .emoji {
+  font-size: 2rem;
+}
+
+.retro-emoji-button .emotion-image {
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.retro-emoji-button:hover .emotion-image {
+  transform: scale(1.1);
+}
+
+.retro-emoji-button.selected .emotion-image {
+  transform: scale(1.2);
+}
+
+.retro-emoji-button .emotion-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.retro-emoji-button:hover {
+  background: var(--retro-cyan);
+  color: var(--retro-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--retro-shadow);
+}
+
+.retro-emoji-button:hover .emotion-label {
+  color: var(--retro-dark);
+}
+
+.retro-emoji-button:active {
+  transform: translate(0, 0);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+.retro-emoji-button.selected {
+  background: var(--retro-lime);
+  color: var(--retro-dark);
+  border-color: var(--retro-lime);
+  box-shadow: 0 0 15px var(--retro-lime);
+}
+
+.retro-emoji-button.selected .emotion-label {
+  color: var(--retro-dark);
+}
+
+.mood-submit-area {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+/* =================================================================
+   EMOTION INPUT & SUBMIT STYLES
+   ================================================================= */
+#emotion-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  border: 2px solid var(--retro-cyan);
+  background: var(--retro-darker);
+  color: var(--retro-light);
+  outline: none;
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+#emotion-input::placeholder {
+  color: var(--retro-cyan);
+  font-family: 'VT323', monospace;
+  opacity: 0.7;
+}
+
+#emotion-input:focus {
+  border-color: var(--retro-pink);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow), 0 0 10px var(--retro-pink);
+}
+
+#submit-emotion {
+  padding: 15px 20px;
+  border: 2px solid var(--retro-pink);
+  background: var(--retro-pink);
+  color: var(--retro-dark);
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-transform: uppercase;
+  min-width: 80px;
+}
+
+#submit-emotion:hover {
+  background: var(--retro-dark);
+  color: var(--retro-pink);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--retro-shadow);
+}
+
+#submit-emotion:active {
+  transform: translate(0, 0);
+  box-shadow: inset 2px 2px 0 var(--retro-shadow);
+}
+
+/* =================================================================
+   SYSTEM MESSAGE STYLING
+   ================================================================= */
+.system-message {
+  background: var(--retro-purple) !important;
+  color: var(--retro-light) !important;
+  border-color: var(--retro-purple) !important;
+  text-align: center !important;
+  margin: 10px !important;
+  box-shadow: 3px 3px 0 var(--retro-shadow) !important;
+  font-style: italic;
+}
+
+/* =================================================================
+   HOVER EFFECTS & INTERACTIVITY
+   ================================================================= */
+.chat-container:hover {
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 20px var(--retro-lime);
+}
+
+.spotify-player:hover {
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 20px var(--retro-purple);
+}
+
+.mood-selection-container:hover {
+  box-shadow: 5px 5px 0 var(--retro-shadow), 0 0 20px var(--retro-cyan);
+}
+
+/* =================================================================
+   CUSTOM SCROLLBARS
+   ================================================================= */
+.chat-log::-webkit-scrollbar,
+.spotify-player::-webkit-scrollbar,
+.mood-log::-webkit-scrollbar {
+  width: 12px;
+}
+
+.chat-log::-webkit-scrollbar-track,
+.spotify-player::-webkit-scrollbar-track,
+.mood-log::-webkit-scrollbar-track {
+  background: var(--retro-darker);
+  border: 1px solid var(--retro-purple);
+}
+
+.chat-log::-webkit-scrollbar-thumb,
+.spotify-player::-webkit-scrollbar-thumb,
+.mood-log::-webkit-scrollbar-thumb {
+  background: var(--retro-purple);
+  border: 1px solid var(--retro-pink);
+}
+
+.chat-log::-webkit-scrollbar-thumb:hover,
+.spotify-player::-webkit-scrollbar-thumb:hover,
+.mood-log::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-pink);
+}
+
+/* =================================================================
+   RESPONSIVE DESIGN
+   ================================================================= */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    width: 95%;
+    margin-top: 10px;
+    gap: 15px;
+  }
+
+  .chat-container,
+  .spotify-player,
+  .mood-selection-container {
+    min-width: auto;
+    width: 100%;
+    height: 400px;
+  }
+
+  .chat-container::before,
+  .spotify-player::before,
+  .mood-selection-container::before {
+    font-size: 8px;
+    padding: 6px 10px;
+  }
+
+  .logo-header {
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .Heading {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .Tagline {
+    font-size: 18px;
+    padding: 15px 25px;
+    margin: 20px auto;
+    letter-spacing: 2px;
+  }
+
+  .Tagline::after {
+    font-size: 16px;
+    right: 12px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  nav a {
+    font-size: 9px;
+    padding: 12px 18px;
+    text-align: center;
+  }
+
+  .chat-log div {
+    margin: 10px 5px;
+    font-size: 14px;
+  }
+
+  .user-message {
+    margin-left: 10px !important;
+  }
+
+  .bot-message {
+    margin-right: 10px !important;
+  }
+
+  .emoji-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .retro-emoji-button {
+    padding: 10px 8px;
+  }
+
+  .retro-emoji-button .emotion-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .retro-emoji-button .emotion-label {
+    font-size: 7px;
+  }
+}
+
 :root {
   --retro-purple: #8B5FBF;
   --retro-pink: #EC4899;
