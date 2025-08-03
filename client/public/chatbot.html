@@ -2,33 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kokoro Chatbot</title>
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/styles.css" />
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav>
+  <nav> 
     <ul>
-      <li><a href="index.html">Wanna talk?</a></li>
-      <li><a href="journal.html">Don't wanna talk?</a></li>
-      <li><a href="emotions.html">Track your emotions</a></li>
+      <li> <a href="index.html"> Wanna talk? </a></li>
+      <li> <a href="mood-buttons.html"> Don't wanna talk? </a></li>
+      <li> <a href="emergency.html"> Track your emotions </a></li>
     </ul>
-  </nav>
-
-  <!-- Logo + Tagline -->
+    </nav>
   <div class="text-container">
-    <div class="logo-header">
-      <img src="assets/logo.png" alt="Kokoro Logo" class="logo" />
-      <h1 class="Heading">Kokoro</h1>
-    </div>
-    <h2 class="Tagline">Let the Music Understand You</h2>
+  <div class="logo-header">
+    <div class="logo">心</div>
+    <h1 class="Heading">    Kokoro</h1>
   </div>
-
-  <!-- Chatbot Interface -->
+  <h2 class="Tagline">Let the Music Understand You</h2>
+    </div>
   <div class="main-container">
     <div class="chat-container">
       <div id="chat-log" class="chat-log">
@@ -39,12 +31,8 @@
         <button id="send-btn">❤️</button>
       </div>
     </div>
-
-    <!-- Spotify Player Embed -->
     <div id="spotify-player" class="spotify-player"></div>
   </div>
-
-  <!-- JavaScript -->
   <script src="../scripts/chatbot.js"></script>
 </body>
 </html>

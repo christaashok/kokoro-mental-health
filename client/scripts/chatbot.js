@@ -71,10 +71,68 @@ document.getElementById("user-input").addEventListener("keypress", (e) => {
 function addMessageToChat(sender, message) {
     const chatLog = document.getElementById("chat-log");
     const msg = document.createElement("div");
-    msg.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    
+    // Add retro styling and icons based on sender
+    let icon = "";
+    let senderClass = "";
+    
+    if (sender === "You") {
+        icon = "👤";
+        senderClass = "user-message";
+    } else if (sender === "Kokoro") {
+        icon = "🤖";
+        senderClass = "bot-message";
+    } else if (sender === "Error") {
+        icon = "⚠️";
+        senderClass = "error-message";
+    }
+    
+    msg.className = senderClass;
+    msg.innerHTML = `<strong>${icon} ${sender.toUpperCase()}:</strong> ${message}`;
+    
+    // Add with animation
+    msg.style.opacity = "0";
+    msg.style.transform = "translateX(-10px)";
     chatLog.appendChild(msg);
-    // Auto-scroll to bottom
-    chatLog.scrollTop = chatLog.scrollHeight;
+    
+    // Trigger animation
+    setTimeout(() => {
+        msg.style.transition = "all 0.3s ease";
+        msg.style.opacity = "1";
+        msg.style.transform = "translateX(0)";
+    }, 50);
+    
+    // Auto-scroll to bottom with smooth animation
+    chatLog.scrollTo({
+        top: chatLog.scrollHeight,
+        behavior: 'smooth'
+    });
+    
+    // Add typewriter effect for bot messages
+    if (sender === "Kokoro") {
+        typewriterEffect(msg, message, icon);
+    }
+}
+
+function typewriterEffect(element, fullText, icon) {
+    const prefix = `<strong>${icon} KOKORO:</strong> `;
+    element.innerHTML = prefix;
+    
+    let i = 0;
+    const speed = 30; // milliseconds per character
+    
+    function typeChar() {
+        if (i < fullText.length) {
+            element.innerHTML = prefix + fullText.substring(0, i + 1) + '<span style="animation: blink 1s infinite;">|</span>';
+            i++;
+            setTimeout(typeChar, speed);
+        } else {
+            // Remove cursor when done
+            element.innerHTML = prefix + fullText;
+        }
+    }
+    
+    setTimeout(typeChar, 200); // Delay before starting to type
 }
 
 function displayMusicRecommendations(tracks) {
@@ -82,32 +140,67 @@ function displayMusicRecommendations(tracks) {
     
     if (!tracks || tracks.length === 0) {
         player.innerHTML = `
-            <div style="border: 2px solid #1db954; border-radius: 15px; padding: 15px; background-color: #f8f9fa; height: 100%; box-sizing: border-box;">
-                <h3 style="color: #1db954; margin: 0 0 10px 0; font-size: 18px; text-align: center;">🎵 Music Recommendations</h3>
-                <p style="text-align: center; color: #666;">Send a message to get music recommendations!</p>
+            <div style="padding: 25px 20px; height: calc(100% - 25px); margin-top: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--retro-darker); border: 2px solid var(--retro-purple); box-sizing: border-box;">
+                <div style="font-family: 'Press Start 2P', cursive; font-size: 12px; color: var(--retro-purple); text-align: center; margin-bottom: 20px;">🎮 AWAITING INPUT</div>
+                <div style="font-family: 'VT323', monospace; font-size: 18px; color: var(--retro-light); text-align: center; line-height: 1.4;">Send a message to unlock<br/>your personal soundtrack!</div>
+                <div style="margin-top: 20px; font-size: 24px; animation: blink 1s infinite;">♪ ♫ ♪</div>
             </div>
+            <style>
+                @keyframes blink {
+                    0%, 50% { opacity: 1; }
+                    51%, 100% { opacity: 0.3; }
+                }
+            </style>
         `;
         return;
     }
 
     let trackHtml = `
-        <div style="border: 2px solid #1db954; border-radius: 15px; padding: 15px; background-color: #f8f9fa; height: 100%; box-sizing: border-box; display: flex; flex-direction: column;">
-            <h3 style="color: #1db954; margin: 0 0 15px 0; font-size: 18px; text-align: center;">🎵 Music Recommendations</h3>
-            <div style="flex: 1; overflow-y: auto;">
+        <div style="padding: 25px 15px 15px 15px; height: calc(100% - 25px); margin-top: 25px; background: var(--retro-darker); border: 2px solid var(--retro-purple); box-sizing: border-box; display: flex; flex-direction: column;">
+            <div style="font-family: 'Press Start 2P', cursive; font-size: 12px; color: var(--retro-purple); text-align: center; margin-bottom: 15px; text-transform: uppercase;">🎵 NOW PLAYING QUEUE</div>
+            <div style="flex: 1; overflow-y: auto; padding-right: 5px;">
     `;
 
     tracks.slice(0, 8).forEach((track, index) => {
+        const colors = [
+            { bg: 'var(--retro-pink)', text: 'var(--retro-dark)' },
+            { bg: 'var(--retro-cyan)', text: 'var(--retro-dark)' },
+            { bg: 'var(--retro-lime)', text: 'var(--retro-dark)' },
+            { bg: 'var(--retro-orange)', text: 'var(--retro-dark)' }
+        ];
+        const color = colors[index % colors.length];
+        
         trackHtml += `
-            <div style="display: flex; align-items: center; padding: 8px; margin-bottom: 8px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                ${track.image_url ? `<img src="${track.image_url}" alt="Album cover" style="width: 40px; height: 40px; border-radius: 4px; margin-right: 10px; flex-shrink: 0;">` : ''}
-                <div style="flex: 1; min-width: 0;">
-                    <div style="font-weight: bold; color: #333; margin-bottom: 2px; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${track.name}</div>
-                    <div style="color: #666; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">by ${track.artist}</div>
-                    <div style="color: #999; font-size: 10px;">♪ ${track.popularity}%</div>
+            <div style="border: 2px solid ${color.bg}; background: var(--retro-dark); margin-bottom: 10px; padding: 10px; box-shadow: 3px 3px 0 var(--retro-shadow); transition: all 0.1s ease; cursor: pointer;" 
+                 onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='5px 5px 0 var(--retro-shadow)'" 
+                 onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='3px 3px 0 var(--retro-shadow)'">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    ${track.image_url ? `
+                        <div style="width: 48px; height: 48px; border: 2px solid ${color.bg}; flex-shrink: 0; overflow: hidden; background: var(--retro-darker);">
+                            <img src="${track.image_url}" alt="Album" style="width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;">
+                        </div>
+                    ` : `
+                        <div style="width: 48px; height: 48px; border: 2px solid ${color.bg}; background: ${color.bg}; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">♪</div>
+                    `}
+                    <div style="flex: 1; min-width: 0;">
+                        <div style="font-family: 'VT323', monospace; font-size: 16px; font-weight: bold; color: ${color.bg}; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase;">${track.name}</div>
+                        <div style="font-family: 'VT323', monospace; font-size: 14px; color: var(--retro-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">BY ${track.artist.toUpperCase()}</div>
+                        <div style="font-family: 'Press Start 2P', cursive; font-size: 8px; color: var(--retro-cyan); margin-top: 4px;">POPULARITY: ${track.popularity}%</div>
+                    </div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;">
-                    ${track.external_url ? `<a href="${track.external_url}" target="_blank" style="background: #1db954; color: white; padding: 4px 8px; border-radius: 12px; text-decoration: none; font-size: 10px; text-align: center; white-space: nowrap;">Spotify</a>` : ''}
-                    ${track.preview_url ? `<audio controls style="width: 80px; height: 25px;"><source src="${track.preview_url}" type="audio/mpeg"></audio>` : '<span style="color: #999; font-size: 9px; text-align: center;">No preview</span>'}
+                <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: space-between; align-items: center;">
+                    ${track.external_url ? `
+                        <a href="${track.external_url}" target="_blank" style="background: ${color.bg}; color: ${color.text}; padding: 6px 10px; border: 2px solid ${color.bg}; text-decoration: none; font-family: 'Press Start 2P', cursive; font-size: 8px; text-transform: uppercase; transition: all 0.1s ease; display: inline-block;"
+                           onmouseover="this.style.background='var(--retro-dark)'; this.style.color='${color.bg}'"
+                           onmouseout="this.style.background='${color.bg}'; this.style.color='${color.text}'">🎧 OPEN</a>
+                    ` : ''}
+                    ${track.preview_url ? `
+                        <audio controls style="flex: 1; max-width: 120px; height: 25px; filter: sepia(100%) hue-rotate(270deg) saturate(2);">
+                            <source src="${track.preview_url}" type="audio/mpeg">
+                        </audio>
+                    ` : `
+                        <span style="font-family: 'VT323', monospace; font-size: 12px; color: var(--retro-light); opacity: 0.6;">NO PREVIEW</span>
+                    `}
                 </div>
             </div>
         `;
@@ -115,9 +208,9 @@ function displayMusicRecommendations(tracks) {
 
     trackHtml += `
             </div>
-            <p style="margin: 10px 0 0 0; font-size: 11px; color: #666; text-align: center; flex-shrink: 0;">
-                Showing ${Math.min(tracks.length, 8)} of ${tracks.length} recommendations
-            </p>
+            <div style="margin-top: 10px; font-family: 'Press Start 2P', cursive; font-size: 8px; color: var(--retro-purple); text-align: center; flex-shrink: 0; border-top: 1px solid var(--retro-purple); padding-top: 10px;">
+                TRACKS LOADED: ${Math.min(tracks.length, 8)}/${tracks.length}
+            </div>
         </div>
     `;
 
