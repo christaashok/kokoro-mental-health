@@ -7,7 +7,7 @@
 
 💖 Inspiration
 Kokoro (心) is a Japanese word meaning heart, mind, and spirit.
-This app is designed to bring emotional support to people in moments of need — privately, gently, and with the help of music.
+This app is designed to bring emotional support to people in moments of need; privately, gently, and with the help of music.
 
 
 ---
