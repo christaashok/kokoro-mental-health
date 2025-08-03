@@ -1,43 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Track Your Emotions</title>
+  <title>Kokoro Emoji Chat</title>
   <link rel="stylesheet" href="client/styles/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
   <nav> 
     <ul>
-      <li><a href="index.html">Wanna talk?</a></li>
-      <li><a href="emotions.html">Don't wanna talk?</a></li>
-      <li><a href="journal.html">Track your emotions</a></li>
+      <li><a href="index.html"> Wanna talk? </a></li>
+      <li><a href="emoji-chat.html"> Emoji Chat </a></li>
+      <li><a href="emergency.html"> Track your emotions </a></li>
     </ul>
   </nav>
-  <div class="text-container">
-    <div class="logo-header">
-      <img src="assets/logo.png" alt="Kokoro Logo" class="logo" />
-      <h1 class="Heading">Kokoro</h1>
-    </div>
-    <h2 class="Tagline">Let the Music Understand You</h2>
-  </div>
-  <div class="main-container">
-  <div class="emotions-container">
-    <h2 class="emotion-title">How are you feeling today?</h2>
 
-    <div class="emoji-options">
-      <button class="emoji-button" data-feeling="happy">😊</button>
-      <button class="emoji-button" data-feeling="numb">😐</button>
-      <button class="emoji-button" data-feeling="sad">😢</button>
-      <button class="emoji-button" data-feeling="angry">😠</button>
-      <input type="text" id="emotion-input" placeholder="Selected emotion..." readonly />
-      <button id="submit-emotion">❤️</button>
-    </div>
+  <div class="logo-header">
+    <div class="logo">心</div>
+    <h1 class="Heading">Kokoro</h1>
   </div>
-   <div id="spotify-player" class="spotify-player"></div>
-  <script>
-    <!--PLS ADD JS-->
-  </script>
+  <h2 class="Tagline">Express Yourself with Emojis</h2>
+
+  <div class="main-container">
+    <div class="chat-container">
+      <div id="chat-log" class="chat-log"></div>
+
+      <div class="chat-input-area" style="flex-direction: column; gap: 15px;">
+        <div class="emoji-options">
+          <button class="emoji-button">😊</button>
+          <button class="emoji-button">😑</button>
+          <button class="emoji-button">😡</button>
+          <button class="emoji-button">😭</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="spotify-player" class="spotify-player"></div>
+  </div>
+
+  <script src="../scripts/emoji-chat.js"></script>
 </body>
 </html>
