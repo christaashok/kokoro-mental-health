@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kokoro Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/styles.css" />
 </head>
 <body>
@@ -14,6 +15,7 @@
       <li><a href="journal.html"> Track your emotions </a></li>
     </ul>
   </nav>
+
   <div class="text-container">
     <div class="logo-header">
       <div class="logo">心</div>
@@ -23,15 +25,20 @@
   </div>
 
   <div class="main-container">
-    <!-- Journal Container -->
     <div class="chat-container">
       <div id="journal-log" class="chat-log"></div>
       <div class="chat-input-area">
         <textarea id="journal-input" placeholder="Write your thoughts here..."></textarea>
-        <button id="add-entry-btn">Add Entry</button>
+        <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+          <button id="add-entry-btn" class="pixel-button">Add Entry</button>
+          <button id="clear-entries-btn" class="pixel-button danger">
+              Clear<br>All Entries
+          </button>
+        </div>
       </div>
     </div>
   </div>
+
   <script src="../scripts/journal.js"></script>
 </body>
 </html>
