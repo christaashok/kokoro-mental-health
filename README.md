@@ -44,26 +44,53 @@ This app is designed to bring emotional support to people in moments of need —
 ---
 
 ## 🚀 Getting Started
-1. Clone the repo  
-   `git clone https://github.com/christaashok/kokoro-mental-health.git`
 
-2. Navigate into the directory  
-   `cd kokoro-mental-health`
+### 1. Clone the repo
+```bash
+git clone https://github.com/christaashok/kokoro-mental-health.git
+```
 
-3. Create and activate a virtual environment  
-   `python -m venv venv`  
-   `source venv/bin/activate` (or `venv\Scripts\activate` on Windows)
+### 2. Navigate into the directory
+```bash
+cd kokoro-mental-health
+```
 
-4. Install dependencies  
-   `pip install -r requirements.txt`
+### 3. Create and activate a virtual environment
+```bash
+python -m venv venv
+# For Mac/Linux:
+source venv/bin/activate
+# For Windows:
+venv\Scripts\activate
+```
 
-5. Add your `.env` file in `server/` with:
-   - `OPENROUTER_API_KEY=...`
-   - `SPOTIFY_CLIENT_ID=...`
-   - `SPOTIFY_CLIENT_SECRET=...`
+### 4. Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
-6. Run the Flask app  
-   `python server/app.py`
+### 5. Add your `.env` file inside the `server/` folder with the following:
+```
+OPENROUTER_API_KEY=your_openrouter_api_key
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+```
+
+To access the API keys:
+- **Spotify**:
+  - Go to [https://developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)
+  - Create an app
+  - Set the redirect URI to: `http://127.0.0.1:8000/callback`
+  - Copy your **Client ID** and **Client Secret**
+
+- **OpenRouter**:
+  - Go to [https://openrouter.ai/](https://openrouter.ai/)
+  - Under **Account > API Keys**, click "Create Key"
+
+### 6. Run the Flask app
+```bash
+python server/app.py
+```
 
 ---
 
