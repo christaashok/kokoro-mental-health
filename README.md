@@ -113,8 +113,7 @@ emotion-support-app/
 │   ├── scripts/              # JavaScript logic for UI interactions
 │   └── styles/               # CSS styling
 │       └── styles.css
-├── docs/                     # Project planning and slides
-│   ├── planning.md
+├── docs/                     # Project slides
 │   └── slides.pdf
 ├── server/
 │   ├── ml_components/        # Emotion detection and recommendation
