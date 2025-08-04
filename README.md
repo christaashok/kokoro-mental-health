@@ -30,15 +30,25 @@
 
 ---
 
+## 🎥 Demo Video
+
+Watch how Kokoro works in action:
+
+👉 [Click here to watch the demo](https://www.youtube.com/watch?v=TDo4Q7uSMaE)
+
+> This video walks through the chatbot, mood buttons, and Spotify integration.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Component     | Tech |
 |---------------|------|
 | Frontend      | HTML, CSS, JavaScript |
 | Backend       | Flask (Python) |
-| ML Inference  | Hugging Face Transformers (emotion-english-distilroberta-base) |
-| Chatbot Model | `deepseek-chat-v3-0324 via OpenRouter API |
-| Music API     | Spotify Web API |
+| ML Inference  | [Hugging Face Transformers](https://github.com/huggingface/transformers) ([emotion-english-distilroberta-base](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base)) |
+| Chatbot Model | [`deepseek-chat-v3-0324`](https://openrouter.ai/models/deepseek-chat-v3-0324) via [OpenRouter API](https://openrouter.ai/) |
+| Music API     | [Spotify Web API](https://developer.spotify.com/documentation/web-api/) |
 | Environment   | `.env` variables, Python venv |
 
 ---
