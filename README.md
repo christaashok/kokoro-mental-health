@@ -47,7 +47,7 @@ Watch how Kokoro works in action:
 | Frontend      | HTML, CSS, JavaScript |
 | Backend       | Flask (Python) |
 | ML Inference  | [Hugging Face Transformers](https://github.com/huggingface/transformers) ([emotion-english-distilroberta-base](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base)) |
-| Chatbot Model | [`deepseek-chat-v3-0324`](https://openrouter.ai/models/deepseek-chat-v3-0324) via [OpenRouter API](https://openrouter.ai/) |
+| Chatbot Model | [`deepseek-chat-v3-0324`](https://openrouter.ai/deepseek/deepseek-chat-v3-0324:free) via [OpenRouter API](https://openrouter.ai/) |
 | Music API     | [Spotify Web API](https://developer.spotify.com/documentation/web-api/) |
 | Environment   | `.env` variables, Python venv |
 
