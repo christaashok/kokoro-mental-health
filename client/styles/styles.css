@@ -1834,3 +1834,30 @@ nav a:active {
   background-color: #ff4d4d; /* crimson red */
   color: black;
 }
+
+/* X styling */
+.journal-entry {
+  position: relative;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  border: 2px solid #05dcf4;
+}
+
+.close-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
