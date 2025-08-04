@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     savedEntries.forEach(entry => {
       const entryDiv = document.createElement('div');
       entryDiv.classList.add('journal-entry');
-      entryDiv.innerHTML = `<strong>${entry.timestamp}</strong><br>${entry.text}`;
+      entryDiv.innerHTML = `
+        <button class="close-btn">×</button>
+        <strong>${entry.timestamp}</strong><br>${entry.text}
+      `;
       journalLog.appendChild(entryDiv);
     });
     journalLog.scrollTop = journalLog.scrollHeight;
@@ -24,7 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const entryDiv = document.createElement('div');
     entryDiv.classList.add('journal-entry');
-    entryDiv.innerHTML = `<strong>${timestamp}</strong><br>${text}`;
+    entryDiv.innerHTML = `
+      <button class="close-btn">×</button>
+      <strong>${timestamp}</strong><br>${text}
+    `;
     journalLog.appendChild(entryDiv);
 
     const currentEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
@@ -49,4 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   clearBtn.addEventListener('click', clearJournalEntries);
+});
+
+// Handle individual entry deletion via the "×" button
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("close-btn")) {
+    e.target.parentElement.remove();
+    // Optionally update localStorage here if you want to persist deletions
+  }
 });
