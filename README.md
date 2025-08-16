@@ -154,6 +154,6 @@ Please report bugs via GitHub Issues:
 | Name    | Email                          | GitHub              |
 |---------|--------------------------------|----------------------|
 | Christa | 💌 christa.ashok@gmail.com     | 🐙 [@christaashok](https://github.com/christaashok) |
-| Taemin  | 💌 taemin.chess@gmail.com      | 🐙 [@taemincode](https://github.com/taemincode)     |
+| Taemin  | 💌 welcome.taemin@gmail.com      | 🐙 [@taemincode](https://github.com/taemincode)     |
 | Srinandhini  | 💌 s.srinandhini2008@gmail.com | 🐙 [@Nandhu-007](https://github.com/Nandhu-007)     |
 | Aahana  | 💌 aahanajain03@gmail.com      | 🐙 [@aahanajain03](https://github.com/aahanajain03) |
